@@ -2,12 +2,7 @@
 import { useForm, useField } from 'vee-validate'
 import * as yup from 'yup'
 import { useNotification } from 'naive-ui'
-
-definePageMeta({
-  auth: {
-    unauthenticatedOnly: true,
-  },
-})
+import { useCookApi} from "~/composables/useCookApi";
 
 const props = defineProps({
   validationStatus: {
@@ -17,35 +12,37 @@ const props = defineProps({
   },
 })
 
+console.log(useUser().get)
+async function test() {
+  await useCookApi('/pingAuth', {
+    cache: 'no-cache',
+    onResponseError() {
+      // обработка ошибки
+    }
+  })
+}
+
 const emit = defineEmits(['onSubmit'])
 
 const schema = yup.object({
   email: yup.string().email('Проверьте правильность Email').required('Email обязателен для заполнения'),
   password: yup.string().min(6, 'Минимальная длина пароля - 6 символов').required('Пароль обязателен для заполнения'),
+  confirmPassword: yup.string().min(6, 'Минимальная длина пароля - 6 символов').required('Пароль обязателен для заполнения'),
 })
 
 //values и meta для того чтобы видеть статистику, что валидно, что нет и тд
-//useForm хранит все данные, Принимает Yup-схему, Управляет сабмитом
-//Теперь форма знает, что у неё есть поля email и password с определёнными правилами
 const { handleSubmit, errors, values, meta } = useForm({
   validationSchema: schema,
   initialValues: {
     email: '',
     password: '',
+    confirmPassword: '',
   },
 })
 
-//useField — "Контроллер поля"
-//Регистрирует поле в форме (говорит useForm что теперь он контролирует это поле).
-//Связывает поле с Yup-правилом по имени (например, password → password: yup.string().min(6)).
-//Возвращает реактивные данные для этого поля:
-//value — текущее значение поля (синхронизируется с v-model).
-//errorMessage — текст ошибки (если валидация не прошла).
-//handleBlur — функция для обработки потери фокуса (например, показать ошибку после ввода).
-
-//!!!! useField('password')  связывает нашу переменную password с полем password внутри формы useForm
 const { value: email, errorMessage: emailError, handleBlur: emailBlur } = useField('email');
 const { value: password, errorMessage: passwordError, handleBlur: passwordBlur } = useField('password');
+const { value: confirmPassword, errorMessage: confirmPasswordError, handleBlur: confirmPasswordBlur } = useField('confirmPassword');
 
 //Нужно вызывать результат работы handleSubmit(проверяет валидацию перед вызовом)
 const submitForm = handleSubmit(onSubmit)
@@ -60,10 +57,10 @@ async function onSubmit (formData: { email: string; password: string }) {
   <div class="auth-container">
     <div class="login-container">
       <img src="~/assets/images/auth/logo.svg" alt="Логотип" class="logo">
-      <h1>Добро пожаловать домой</h1>
-      <p>Войдите, чтобы открыть семейные рецепты, передающиеся из поколения в поколение</p>
+      <h1>Регистрация на сайте</h1>
+      <p>Позвольте с Вами познакомиться!</p>
       <n-form
-          @submit.prevent="submitForm"
+          @submit.prevent="test"
       >
         <n-form-item
             :show-label="false"
@@ -88,17 +85,27 @@ async function onSubmit (formData: { email: string; password: string }) {
               :status="validationStatus"
           />
         </n-form-item>
+        <n-form-item
+            :show-label="false"
+            :feedback="errors.password"
+            :validation-status="validationStatus"
+        >
+          <n-input
+              v-model:value="confirmPassword"
+              type="password"
+              placeholder="Подтверждение пароля*"
+              :status="validationStatus"
+          />
+        </n-form-item>
         <n-button
             type="primary"
             attr-type="submit"
             :bordered="false"
             color="#994b3a"
         >
-          Войти
+          Зарегистрироваться
         </n-button>
       </n-form>
-      <div class="footer-note">Нет аккаунта? <NuxtLink to="/registration" style="color:#b45f4d;">Зарегистрироваться</NuxtLink></div>
-      <div class="footer-note">Забыли пароль? <NuxtLink to="#" style="color:#b45f4d;">Восстановить</NuxtLink></div>
       <div class="slogan">Каждый рецепт — это история</div>
     </div>
   </div>
