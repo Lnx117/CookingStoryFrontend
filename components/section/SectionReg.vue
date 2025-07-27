@@ -3,6 +3,7 @@ import { useForm, useField } from 'vee-validate'
 import * as yup from 'yup'
 import { useNotification } from 'naive-ui'
 import { useCookApi} from "~/composables/useCookApi";
+import type {RegistrationFormInterface} from "~/interfaces/forms";
 
 const props = defineProps({
   validationStatus: {
@@ -12,7 +13,6 @@ const props = defineProps({
   },
 })
 
-console.log(useUser().get)
 async function test() {
   await useCookApi('/pingAuth', {
     cache: 'no-cache',
@@ -25,21 +25,33 @@ async function test() {
 const emit = defineEmits(['onSubmit'])
 
 const schema = yup.object({
+  name: yup.string().required('Имя обязательно для заполнения')
+      .max(30, 'Максимальная длина имени - 30 символов')
+      .matches(
+      /^[a-zA-Zа-яА-ЯёЁ\s\-']+$/,
+      'Имя может содержать только буквы, пробелы, дефисы и апострофы'
+  ),
   email: yup.string().email('Проверьте правильность Email').required('Email обязателен для заполнения'),
   password: yup.string().min(6, 'Минимальная длина пароля - 6 символов').required('Пароль обязателен для заполнения'),
-  confirmPassword: yup.string().min(6, 'Минимальная длина пароля - 6 символов').required('Пароль обязателен для заполнения'),
+  confirmPassword: yup.string()
+      .min(6, 'Минимальная длина пароля - 6 символов')
+      .max(12, 'Максимальная длина пароля - 12 символов')
+      .required('Подтверждение пароля обязательно')
+      .oneOf([yup.ref('password')], 'Пароли должны совпадать'),
 })
 
 //values и meta для того чтобы видеть статистику, что валидно, что нет и тд
 const { handleSubmit, errors, values, meta } = useForm({
   validationSchema: schema,
   initialValues: {
+    name: '',
     email: '',
     password: '',
     confirmPassword: '',
   },
 })
 
+const { value: name, errorMessage: nameError, handleBlur: nameBlur } = useField('name');
 const { value: email, errorMessage: emailError, handleBlur: emailBlur } = useField('email');
 const { value: password, errorMessage: passwordError, handleBlur: passwordBlur } = useField('password');
 const { value: confirmPassword, errorMessage: confirmPasswordError, handleBlur: confirmPasswordBlur } = useField('confirmPassword');
@@ -47,7 +59,7 @@ const { value: confirmPassword, errorMessage: confirmPasswordError, handleBlur: 
 //Нужно вызывать результат работы handleSubmit(проверяет валидацию перед вызовом)
 const submitForm = handleSubmit(onSubmit)
 
-async function onSubmit (formData: { email: string; password: string }) {
+async function onSubmit (formData: RegistrationFormInterface) {
   emit('onSubmit', formData)
 }
 
@@ -60,8 +72,19 @@ async function onSubmit (formData: { email: string; password: string }) {
       <h1>Регистрация на сайте</h1>
       <p>Позвольте с Вами познакомиться!</p>
       <n-form
-          @submit.prevent="test"
+          @submit.prevent="submitForm"
       >
+        <n-form-item
+            :show-label="false"
+            :feedback="errors.name"
+            :validation-status="validationStatus"
+        >
+          <n-input
+              v-model:value="name"
+              placeholder="Имя*"
+              :status="validationStatus"
+          />
+        </n-form-item>
         <n-form-item
             :show-label="false"
             :feedback="errors.email"
@@ -87,7 +110,7 @@ async function onSubmit (formData: { email: string; password: string }) {
         </n-form-item>
         <n-form-item
             :show-label="false"
-            :feedback="errors.password"
+            :feedback="errors.confirmPassword"
             :validation-status="validationStatus"
         >
           <n-input
@@ -95,6 +118,7 @@ async function onSubmit (formData: { email: string; password: string }) {
               type="password"
               placeholder="Подтверждение пароля*"
               :status="validationStatus"
+              @blur="confirmPasswordBlur"
           />
         </n-form-item>
         <n-button

@@ -2,6 +2,7 @@
 import { useForm, useField } from 'vee-validate'
 import * as yup from 'yup'
 import { useNotification } from 'naive-ui'
+import type {AuthFormInterface} from "~/interfaces/forms";
 
 useHead({
   title: 'Авторизация',
@@ -18,7 +19,7 @@ const notification = useNotification()
 const route = useRoute()
 const validationStatus = ref<'error' | 'success' | ''>('')
 
-async function onSubmit (formData: { email: string; password: string }) {
+async function onSubmit (formData: AuthFormInterface) {
   //sidebase Логин
   const result = await signIn({
       email: formData.email,
