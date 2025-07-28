@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useForm, useField } from 'vee-validate'
 import * as yup from 'yup'
-import { useNotification } from 'naive-ui'
 import { useCookApi} from "~/composables/useCookApi";
 import type {RegistrationFormInterface} from "~/interfaces/forms";
 
@@ -25,17 +24,18 @@ async function test() {
 const emit = defineEmits(['onSubmit'])
 
 const schema = yup.object({
-  name: yup.string().required('Имя обязательно для заполнения')
+  name: yup.string().required('Имя обязательно для заполнения').min(1, 'Имя должно состоять хотя бы из одной буквы')
       .max(30, 'Максимальная длина имени - 30 символов')
       .matches(
       /^[a-zA-Zа-яА-ЯёЁ\s\-']+$/,
       'Имя может содержать только буквы, пробелы, дефисы и апострофы'
   ),
   email: yup.string().email('Проверьте правильность Email').required('Email обязателен для заполнения'),
-  password: yup.string().min(6, 'Минимальная длина пароля - 6 символов').required('Пароль обязателен для заполнения'),
+  password: yup.string().min(6, 'Минимальная длина пароля - 6 символов')
+      .max(30, 'Минимальная длина пароля - 30 символов').required('Пароль обязателен для заполнения'),
   confirmPassword: yup.string()
       .min(6, 'Минимальная длина пароля - 6 символов')
-      .max(12, 'Максимальная длина пароля - 12 символов')
+      .max(30, 'Максимальная длина пароля - 30 символов')
       .required('Подтверждение пароля обязательно')
       .oneOf([yup.ref('password')], 'Пароли должны совпадать'),
 })
@@ -130,6 +130,7 @@ async function onSubmit (formData: RegistrationFormInterface) {
           Зарегистрироваться
         </n-button>
       </n-form>
+      <div class="footer-note">Уже есть аккаунт? <NuxtLink to="/authorization" style="color:#b45f4d;">Войти</NuxtLink></div>
       <div class="slogan">Каждый рецепт — это история</div>
     </div>
   </div>

@@ -21,7 +21,8 @@ const emit = defineEmits(['onSubmit'])
 
 const schema = yup.object({
   email: yup.string().email('Проверьте правильность Email').required('Email обязателен для заполнения'),
-  password: yup.string().min(6, 'Минимальная длина пароля - 6 символов').required('Пароль обязателен для заполнения'),
+  password: yup.string().min(6, 'Минимальная длина пароля - 6 символов').max(30, 'Максимальная длина пароля - 30 символов')
+      .required('Пароль обязателен для заполнения'),
 })
 
 //values и meta для того чтобы видеть статистику, что валидно, что нет и тд

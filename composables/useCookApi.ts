@@ -14,5 +14,8 @@ export const useCookApi: typeof useFetch = (request, opts?) => {
             }
         },
         ...opts,
+        //для вывода ошибки, чтобы запрос отличался от предыдущего даже если параметры не поменялись
+        key: `${Date.now()}`,
+        immediate: true,
     })
 }

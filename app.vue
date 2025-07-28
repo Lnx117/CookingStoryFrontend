@@ -57,13 +57,15 @@ const themeOverrides: GlobalThemeOverrides = {
 </script>
 
 <template>
-  <n-notification-provider>
-    <NuxtLayout :name="layout">
-      <n-config-provider :theme-overrides="themeOverrides">
-        <NuxtPage />
-      </n-config-provider>
-    </NuxtLayout>
-  </n-notification-provider>
+  <n-loading-bar-provider>
+    <n-notification-provider>
+      <NuxtLayout :name="layout">
+        <n-config-provider :theme-overrides="themeOverrides">
+          <NuxtPage />
+        </n-config-provider>
+      </NuxtLayout>
+    </n-notification-provider>
+  </n-loading-bar-provider>
 </template>
 
 <style>

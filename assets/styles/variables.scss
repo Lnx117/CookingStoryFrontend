@@ -1,13 +1,23 @@
-// @use "sass:color"; // Импорт модуля color
-
-// $primary-color: #42b983;
-
-// .n-button {
-//   background-color: $primary-color;
-//   transition: background-color 0.3s;
-
-//   &:hover {
-//     background-color: color.adjust($primary-color, $lightness: -10%);
-//     // или color.scale($primary-color, $lightness: -10%);
-//   }
-// }
+//// Цветовая палитра
+//$primary-brown: #6b3e26;
+//$secondary-brown: #7b5e47;
+//$light-brown: #a0846a;
+//$dark-brown: #8d6e58;
+//$button-red: #b45f4d;
+//$button-hover-red: #994b3a;
+//$background-cream: #f9f5f0;
+//$background-transparent: rgba(255, 248, 240, 0.8);
+//$white-transparent: rgba(255, 255, 255, 0.95);
+//
+//// Размеры
+//$button-height: 44px;
+//$container-max-width: 400px;
+//$border-radius: 16px;
+//$box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+//
+//// Шрифты
+//$font-family: 'Merriweather', serif;
+//$heading-size: 26px;
+//$mobile-heading-size: 22px;
+//$paragraph-size: 14px;
+//$footer-note-size: 13px;
