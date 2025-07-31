@@ -1,0 +1,33 @@
+@import 'variables';
+/* Шапка */
+.header {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  z-index: 10;
+
+  .logo {
+    font-family: 'Merriweather', serif;
+    font-weight: bold;
+    font-size: 22px;
+    color: $accent;
+  }
+
+  .nav-icons {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+}
+
+.nav-icons img {
+  width: 24px;
+  cursor: pointer;
+}
