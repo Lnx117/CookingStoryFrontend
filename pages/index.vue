@@ -1,30 +1,91 @@
 <script setup lang="ts">
-const { signOut } = useAuth()
-const { status } = useAuth()
-const router = useRouter()
+definePageMeta({
+  auth: false,
+})
 
-console.log(status.value)
-const loading = ref(false)
-
-const handleLogout = async () => {
-  loading.value = true
-
-  try {
-    await signOut({ redirect: false })
-    await router.push('/login')
-  } catch (error) {
-    console.error('Ошибка при выходе:', error)
-  } finally {
-    loading.value = false
-  }
-}
 </script>
 <template>
-  <button
-      @click="handleLogout"
-      :disabled="loading"
-      class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium disabled:opacity-50"
-  >
-    {{ loading ? 'Выход...' : 'Выйти' }}
-  </button>
+  <div class="card">
+    <img src="" alt="Блюдо">
+    <div class="author">Мария Иванова • 2 ч назад</div>
+    <div class="text">Сегодня приготовили борщ по бабушкиному рецепту. Всё получилось идеально! Делюсь фото 😊</div>
+    <div class="actions">
+      <span>❤️ 12</span>
+      <span style="cursor:pointer;" onclick="toggleComments(this)">💬 Комментарии</span>
+    </div>
+    <div class="comments">
+      <p><strong>Иван:</strong> Потрясающе! Такой борщ тоже помню от детства</p>
+      <p><strong>Ольга:</strong> Рецептом поделитесь?)</p>
+    </div>
+  </div>
+  
+  <div class="card">
+    <img src="" alt="Блюдо">
+    <div class="author">Мария Иванова • 2 ч назад</div>
+    <div class="text">Сегодня приготовили борщ по бабушкиному рецепту. Всё получилось идеально! Делюсь фото 😊</div>
+    <div class="actions">
+      <span>❤️ 12</span>
+      <span style="cursor:pointer;" onclick="toggleComments(this)">💬 Комментарии</span>
+    </div>
+    <div class="comments">
+      <p><strong>Иван:</strong> Потрясающе! Такой борщ тоже помню от детства</p>
+      <p><strong>Ольга:</strong> Рецептом поделитесь?)</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="" alt="Блюдо">
+    <div class="author">Мария Иванова • 2 ч назад</div>
+    <div class="text">Сегодня приготовили борщ по бабушкиному рецепту. Всё получилось идеально! Делюсь фото 😊</div>
+    <div class="actions">
+      <span>❤️ 12</span>
+      <span style="cursor:pointer;" onclick="toggleComments(this)">💬 Комментарии</span>
+    </div>
+    <div class="comments">
+      <p><strong>Иван:</strong> Потрясающе! Такой борщ тоже помню от детства</p>
+      <p><strong>Ольга:</strong> Рецептом поделитесь?)</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="" alt="Блюдо">
+    <div class="author">Мария Иванова • 2 ч назад</div>
+    <div class="text">Сегодня приготовили борщ по бабушкиному рецепту. Всё получилось идеально! Делюсь фото 😊</div>
+    <div class="actions">
+      <span>❤️ 12</span>
+      <span style="cursor:pointer;" onclick="toggleComments(this)">💬 Комментарии</span>
+    </div>
+    <div class="comments">
+      <p><strong>Иван:</strong> Потрясающе! Такой борщ тоже помню от детства</p>
+      <p><strong>Ольга:</strong> Рецептом поделитесь?)</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="" alt="Блюдо">
+    <div class="author">Мария Иванова • 2 ч назад</div>
+    <div class="text">Сегодня приготовили борщ по бабушкиному рецепту. Всё получилось идеально! Делюсь фото 😊</div>
+    <div class="actions">
+      <span>❤️ 12</span>
+      <span style="cursor:pointer;" onclick="toggleComments(this)">💬 Комментарии</span>
+    </div>
+    <div class="comments">
+      <p><strong>Иван:</strong> Потрясающе! Такой борщ тоже помню от детства</p>
+      <p><strong>Ольга:</strong> Рецептом поделитесь?)</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="" alt="Блюдо">
+    <div class="author">Мария Иванова • 2 ч назад</div>
+    <div class="text">Сегодня приготовили борщ по бабушкиному рецепту. Всё получилось идеально! Делюсь фото 😊</div>
+    <div class="actions">
+      <span>❤️ 12</span>
+      <span style="cursor:pointer;" onclick="toggleComments(this)">💬 Комментарии</span>
+    </div>
+    <div class="comments">
+      <p><strong>Иван:</strong> Потрясающе! Такой борщ тоже помню от детства</p>
+      <p><strong>Ольга:</strong> Рецептом поделитесь?)</p>
+    </div>
+  </div>
 </template>

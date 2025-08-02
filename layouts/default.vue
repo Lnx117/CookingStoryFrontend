@@ -2,12 +2,14 @@
 </script>
 
 <template>
-  <LayoutHeader />
-  <main id="main">
-    авторизован))
-    <slot />
-  </main>
-  <LayoutFooter />
+  <div class="body">
+    <LayoutHeader>
+      <main id="main">
+        <slot />
+      </main>
+    </LayoutHeader>
+    <LayoutFooter />
+  </div>
 </template>
 
 <style lang="scss">

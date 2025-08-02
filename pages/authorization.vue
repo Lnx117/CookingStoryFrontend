@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { useForm, useField } from 'vee-validate'
-import * as yup from 'yup'
-import { useNotification } from 'naive-ui'
+import {useLoadingBar, useNotification} from 'naive-ui'
 import type {AuthFormInterface} from "~/interfaces/forms";
 
 useHead({
@@ -18,8 +16,10 @@ const { signIn } = useAuth()
 const notification = useNotification()
 const route = useRoute()
 const validationStatus = ref<'error' | 'success' | ''>('')
+const loadingBar = useLoadingBar()
 
 async function onSubmit (formData: AuthFormInterface) {
+  loadingBar.start()
   //sidebase Логин
   const result = await signIn({
       email: formData.email,
@@ -28,6 +28,7 @@ async function onSubmit (formData: AuthFormInterface) {
       redirect: false,
     }
   ).then(() => {
+    loadingBar.finish()
     //проверка куда нужен редирект и сам редирект
     let redirectPath = route.query.redirect ?? '/'
 
