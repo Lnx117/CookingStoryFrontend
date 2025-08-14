@@ -9,11 +9,8 @@ export const useUser = defineStore('user', {
             name: 'guest',
         },
     }),
-  getters: {
-    get: (): SessionData => <SessionData>useAuth().data?.value ?? { email: 'public', role: 'guest' },
-  },
-  actions: {
-
-    }
-
+    getters: {
+      get: (): SessionData => <SessionData>useAuth().data?.value ?? { email: 'public', role: 'guest' },
+    },
+    actions: {}
 })

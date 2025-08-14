@@ -1,13 +1,16 @@
 <script setup lang="ts">
+
+
 definePageMeta({
   auth: false,
 })
 
 </script>
 <template>
+  <SectionBannersMainIndex />
   <div class="card">
     <img src="" alt="Блюдо">
-    <div class="author">Мария Иванова • 2 ч назад</div>
+    <div class="author">Мария Иванова • 2 ч назад111111111</div>
     <div class="text">Сегодня приготовили борщ по бабушкиному рецепту. Всё получилось идеально! Делюсь фото 😊</div>
     <div class="actions">
       <span>❤️ 12</span>
