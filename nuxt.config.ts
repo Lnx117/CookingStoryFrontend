@@ -6,7 +6,8 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      apiBase: process.env.NUXT_PUBLIC_API_BASE || 'http://api.host.local:8000/api'
+      apiBase: process.env.NUXT_PUBLIC_API_BASE || 'http://api.host.local:8000/api',
+      filesUrl: process.env.NUXT_PUBLIC_FILES_URL
     }
   },
 
@@ -41,9 +42,14 @@ export default defineNuxtConfig({
     server: {
       watch: {
         usePolling: true,
-        interval: 1000,
+        interval: 100
       },
-    },
+      hmr: {
+        protocol: 'ws',
+        host: 'localhost',
+        port: 24678
+      }
+    }
   },
 
   // @ts-ignore - Sidebase auth types

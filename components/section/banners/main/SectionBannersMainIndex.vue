@@ -2,6 +2,12 @@
 </script>
 
 <template>
-  <SectionBannersMainCarousel />
-  <SectionBannersMainSingle />
+  <div class="section-banner-main-container">
+    <SectionBannersMainCarousel />
+    <SectionBannersMainSingle />
+  </div>
 </template>
+
+<style>
+
+</style>

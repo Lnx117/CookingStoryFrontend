@@ -48,15 +48,15 @@ const handleLogout = async () => {
 
         <div class="menu-items">
           <a href="#">
-            <span class="icon"><img src="~/assets/icons/book.svg" alt="Свернуть/развернуть" /></span>
+            <span class="icon"><img src="~/assets/icons/book.svg" alt="Общие рецепты" /></span>
             <span v-if="!isSidebarCollapsed" class="label">Общие рецепты</span>
           </a>
-          <a href="#">
-            <span class="icon"><img src="~/assets/icons/book.svg" alt="Свернуть/развернуть" /></span>
+          <NuxtLink :to="'/my-recipe'" class="menu-item">
+            <span class="icon"><img src="~/assets/icons/book.svg" alt="Мои рецепты" /></span>
             <span v-if="!isSidebarCollapsed" class="label">Мои рецепты</span>
-          </a>
+          </NuxtLink>
           <a href="#">
-            <span class="icon"><img src="~/assets/icons/users.svg" alt="Свернуть/развернуть" /></span>
+            <span class="icon"><img src="~/assets/icons/users.svg" alt="Мои подписки" /></span>
             <span v-if="!isSidebarCollapsed" class="label">Мои подписки</span>
           </a>
           <a href="#">
