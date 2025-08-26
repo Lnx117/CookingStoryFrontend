@@ -27,7 +27,9 @@ const handleLogout = async () => {
 <template>
   <div>
     <div class="header">
-      <div class="logo">Family Recipe Book</div>
+      <NuxtLink to="/" class="nuxt-link">
+        <div class="logo">Family Recipe Book</div>
+      </NuxtLink>
       <div class="nav-icons">
         <img src="~/assets/icons/zoom.svg" alt="Поиск" />
         <img src="~/assets/icons/bell.svg" alt="Уведомления" />

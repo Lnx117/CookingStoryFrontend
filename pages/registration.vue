@@ -74,7 +74,6 @@ async function sendForm(formData: RegistrationFormInterface): Promise<Registrati
         resolve(data.value)
       }
     }).catch((error) => {
-      console.log(11111)
       reject(error)
     })
   })

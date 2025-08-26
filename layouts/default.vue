@@ -4,7 +4,7 @@
 <template>
   <div class="body">
     <LayoutHeader>
-      <main id="main">
+      <main id="main" class="main-container">
         <slot />
       </main>
     </LayoutHeader>

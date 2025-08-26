@@ -1,6 +1,7 @@
 //Стандартный 
 import type {UserInterface} from "~/interfaces/user";
 import type {BannerInterface} from "~/interfaces/banners";
+import type {RecipeListResponseInterface} from "~/interfaces/recipes";
 
 export interface ApiResponse<T = any> {
     status: boolean;
@@ -28,5 +29,9 @@ export interface AuthData<T = UserInterface> {
 }
 
 export interface BannersResponse extends ApiResponse<BannerInterface[] | null> {
+
+}
+
+export interface RecipeListResponse extends ApiResponse<RecipeListResponseInterface[] | null> {
 
 }

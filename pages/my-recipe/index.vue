@@ -1,10 +1,11 @@
 <script setup lang="ts">
 
+import SectionRecipesListTitle from "~/components/section/recipes/list/SectionRecipesListTitle.vue";
+import SectionRecipesListIndex from "~/components/section/recipes/list/SectionRecipesListIndex.vue";
 </script>
 
 <template>
-  <div>
-    <h1>Страница мои рецепты</h1>
-  </div>
+  <SectionRecipesListTitle />
+  <SectionRecipesListIndex />
 </template>
 
