@@ -14,6 +14,12 @@ export interface RecipeInterface {
     created_at: string;
     updated_at: string;
     user: UserInterface;
+    ingredients: IngredientField[],
+    steps: StepField[],
+}
+
+export interface RecipeData {
+    data: RecipeInterface;
 }
 
 export interface PaginationLink {
@@ -44,4 +50,23 @@ export interface RecipeListResponseInterface {
     message: string;
     data: RecipePaginationData;
     errors: any | null;
+    current_page: number;
+    last_page: number;
+    per_page: number;
+    total: number;
+}
+
+export interface StepField {
+    step_number: number
+    description: string
+    image: File | null
+}
+
+export interface IngredientField {
+    id: number | null;
+    name_ru: string | null;
+    pivot?: {
+        weight_grams: number | null;
+    };
+    weight_grams: number | null;
 }

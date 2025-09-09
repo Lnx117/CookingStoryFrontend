@@ -1,6 +1,7 @@
 //Стандартный 
 import type {UserInterface} from "~/interfaces/user";
 import type {BannerInterface} from "~/interfaces/banners";
+import type {RecipeData, RecipePaginationData} from "~/interfaces/recipes";
 import type {RecipeListResponseInterface} from "~/interfaces/recipes";
 
 export interface ApiResponse<T = any> {
@@ -32,6 +33,10 @@ export interface BannersResponse extends ApiResponse<BannerInterface[] | null> {
 
 }
 
-export interface RecipeListResponse extends ApiResponse<RecipeListResponseInterface[] | null> {
+export interface RecipeListResponse extends ApiResponse<RecipePaginationData | null> {
+
+}
+
+export interface RecipeResponse extends ApiResponse<RecipeData | null> {
 
 }

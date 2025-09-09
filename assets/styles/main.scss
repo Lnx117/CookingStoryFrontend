@@ -1,13 +1,58 @@
 @import 'variables';
 
+//Общие
+.no-link-style {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
 //Тело body
-.body {
+//body {
+//  margin: 0;
+//  font-family: 'Open Sans', sans-serif;
+//  background-color: $main-bg;
+//  color: $text-color;
+//  background-image: url('/images/background-3.png');
+//  background-repeat: repeat;
+//  background-size: 700px 500px;
+//}
+//
+//body::before {
+//  content: "";
+//  position: fixed;
+//  inset: 0;
+//  pointer-events: none;
+//  background-image:
+//          url('/images/im1.png'),
+//          url('/images/im2.png'),
+//          url('/images/im3.png');
+//  background-repeat: repeat;
+//  background-size: 700px 500px;
+//  background-position: 0 0, 700px 0, 1400px 0;
+//  z-index: -1;
+//  background: rgba(252,250,248,0.5);
+//}
+body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
   background-color: $main-bg;
   color: $text-color;
+
+  /* фоновая картинка */
+  background-image: url('/images/background-9.png');
+  background-repeat: repeat-y;       /* повторяем только по вертикали */
+  background-size: 100% auto;        /* масштабируем по ширине экрана */
+  background-position: top center;   /* выравнивание сверху по центру */
 }
 
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: rgba(252,250,248,0.5);
+  z-index: -1; /* чтобы был под всем контентом */
+}
 /* Шапка */
 .header {
   position: fixed;
@@ -322,32 +367,30 @@ main {
     grid-template-columns: 1fr;
     gap: 16px;
 
-
     .card {
-      display: grid;
-      grid-template-rows: 1fr auto; // image занимает доступное место, title снизу
-      align-content: start;
+      display: flex;
+      flex-direction: column;
       background: #fff;
       border-radius: 16px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.06);
       overflow: hidden;
-      height: clamp(370px, 25vw, 280px);
 
-
+      /* верхний блок с картинкой */
       .image-wrap {
+        position: relative;
         width: 100%;
-        height: 100%;
-
+        aspect-ratio: 4 / 3; /* зафиксированное соотношение сторон */
+        overflow: hidden;
 
         .image {
           width: 100%;
           height: 100%;
-          display: block;
           object-fit: cover;
+          display: block;
         }
       }
 
-
+      /* блок с заголовком */
       .title {
         font-size: 1.1rem;
         font-weight: 700;
@@ -359,36 +402,226 @@ main {
         overflow: hidden;
       }
 
-
       .desc {
         display: none;
       }
     }
   }
 
-
   @media (min-width: 640px) {
     .cards {
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-
-
-      .card {
-        height: clamp(290px, 25vw, 280px);
-        grid-template-rows: 1fr auto; // сохраняем заголовок
-
-
-        .image-wrap .image {
-          height: 100%;
-        }
-      }
     }
   }
-
 
   @media (min-width: 1024px) {
     .cards {
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 20px;
+    }
+  }
+}
+
+//Создание рецепта recipe-create page
+.create-recipe-page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  .card {
+    padding: 1rem;
+  }
+
+  .grid-basic {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .ingredient-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr auto;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .step-card {
+    padding: 1rem;
+
+    .step-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+
+      .step-title {
+        font-weight: 600;
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .upload-preview {
+    width: 180px;
+    height: 180px;
+  }
+
+  .upload-step {
+    width: 160px;
+    height: 160px;
+  }
+
+  .actions {
+    margin-top: 1rem;
+  }
+
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;
+  }
+
+  /* 📱 Адаптивность */
+  @media (max-width: 768px) {
+    .grid-basic {
+      grid-template-columns: 1fr;
+    }
+
+    .ingredient-row {
+      grid-template-columns: 1fr;
+    }
+
+    .upload-preview,
+    .upload-step {
+      width: 100%;
+      height: auto;
+      max-height: 220px;
+    }
+
+    .form-actions {
+      justify-content: center;
+    }
+  }
+}
+
+//Редактирование рецепта recipe-edit page
+.edit-recipe-page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  .card {
+    padding: 1rem;
+  }
+
+  .grid-basic {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .ingredient-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr auto;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .step-card {
+    padding: 1rem;
+
+    .step-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+
+      .step-title {
+        font-weight: 600;
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .upload-preview {
+    width: 180px;
+    height: 180px;
+  }
+
+  .upload-step {
+    width: 160px;
+    height: 160px;
+  }
+
+  .actions {
+    margin-top: 1rem;
+  }
+
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;
+  }
+
+  /* 📱 Адаптивность */
+  @media (max-width: 768px) {
+    .grid-basic {
+      grid-template-columns: 1fr;
+    }
+
+    .ingredient-row {
+      grid-template-columns: 1fr;
+    }
+
+    .upload-preview,
+    .upload-step {
+      width: 100%;
+      height: auto;
+      max-height: 220px;
+    }
+
+    .form-actions {
+      justify-content: center;
+    }
+  }
+}
+
+//Чтение рецепта recipe-read page
+.read-recipe-page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  .card {
+    padding: 1rem;
+  }
+
+  .grid-basic {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .ingredient-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr auto;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  /* 📱 Адаптивность */
+  @media (max-width: 768px) {
+    .grid-basic {
+      grid-template-columns: 1fr;
     }
   }
 }

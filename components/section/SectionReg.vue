@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useForm, useField } from 'vee-validate'
 import * as yup from 'yup'
-import { useCookApi} from "~/composables/useCookApi";
 import type {RegistrationFormInterface} from "~/interfaces/forms";
 
 const props = defineProps({
@@ -11,15 +10,6 @@ const props = defineProps({
     default: false,
   },
 })
-
-async function test() {
-  await useCookApi('/pingAuth', {
-    cache: 'no-cache',
-    onResponseError() {
-      // обработка ошибки
-    }
-  })
-}
 
 const emit = defineEmits(['onSubmit'])
 
