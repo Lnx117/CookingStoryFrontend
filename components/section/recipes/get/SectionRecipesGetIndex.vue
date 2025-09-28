@@ -33,19 +33,19 @@ const config = useRuntimeConfig()
           <div class="info-group kbzu">
             <div class="info-box">
               <span class="label">Калории</span>
-              <span class="value">{{ props.recipe.calories }} ккал</span>
+              <span class="value">{{ props.recipe.calories_total }} ккал</span>
             </div>
             <div class="info-box">
               <span class="label">Белки</span>
-              <span class="value">{{ props.recipe.proteins }} г</span>
+              <span class="value">{{ props.recipe.proteins_total }} г</span>
             </div>
             <div class="info-box">
               <span class="label">Жиры</span>
-              <span class="value">{{ props.recipe.fats }} г</span>
+              <span class="value">{{ props.recipe.fats_total }} г</span>
             </div>
             <div class="info-box">
               <span class="label">Углеводы</span>
-              <span class="value">{{ props.recipe.carbs }} г</span>
+              <span class="value">{{ props.recipe.carbs_total }} г</span>
             </div>
           </div>
 
@@ -74,7 +74,7 @@ const config = useRuntimeConfig()
             </div>
             <div class="step-text">
               <h3>Шаг {{ index + 1 }}</h3>
-              <p>{{ step.text }}</p>
+              <p>{{ step.description }}</p>
             </div>
           </div>
         </div>
