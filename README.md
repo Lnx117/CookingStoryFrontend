@@ -1,75 +1,27 @@
-# Nuxt Minimal Starter
+# Фронтенд для сайта рецептов
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Этот проект является фронтендом для сайта рецептов.  
+В качестве движка используется **Nuxt 3**.
 
-## Setup
+## Основные технологии
 
-Make sure to install dependencies:
+- **Nuxt 3** — SSR/SSG фреймворк на Vue 3.
+- **Docker Compose** — для поднятия фронтенда и всех зависимых сервисов.
+- **@sidebase/nuxt-auth** — для авторизации пользователей.
+- **Vee Validate** — валидация форм внутри компонентов.
+- **Naive UI** — компоненты UI с легкой кастомизацией под дизайн проекта.
+- **Sass** — препроцессор для стилей.
+- **Elasticsearch** — интеграция для быстрого поиска ингредиентов.
+- Интеграция с **админкой на бэкенде** для управления баннерами контента.
 
-```bash
-# npm
-npm install
+## Архитектура проекта
 
-# pnpm
-pnpm install
+- Компоненты разделены по функциональности и переиспользуемости.
+- Валидация форм и взаимодействие с API реализованы на уровне компонентов.
+- Структура проекта учитывает возможности расширения и дальнейшего развития.
 
-# yarn
-yarn install
+## План развития
 
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Проект находится на ранней стадии и постоянно развивается.  
+README будет обновляться по мере добавления новых функций.  
+Это пока не полноценная документация, а краткое описание текущего состояния проекта.
